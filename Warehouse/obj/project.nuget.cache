@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "LNZwc4/5A197Z9paC9pNQe5G5MC8/c20+ogKJUaSMyHxOXwD1ml1qYTBsPfy/hUEEpAY3t8otd0AcXew1GF9FQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nagy.gabor\\Documents\\Training\\C#\\Warehouse\\Warehouse\\Warehouse.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.aspnetcore.odata\\8.2.3\\microsoft.aspnetcore.odata.8.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.data.edm\\5.8.5\\microsoft.data.edm.5.8.5.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.data.odata\\5.8.5\\microsoft.data.odata.5.8.5.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.odata.client\\7.18.0\\microsoft.odata.client.7.18.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.odata.core\\7.18.0\\microsoft.odata.core.7.18.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.odata.edm\\7.18.0\\microsoft.odata.edm.7.18.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.odata.modelbuilder\\1.0.9\\microsoft.odata.modelbuilder.1.0.9.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\microsoft.spatial\\7.18.0\\microsoft.spatial.7.18.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\simple.odata.client\\6.0.1\\simple.odata.client.6.0.1.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\system.spatial\\5.8.5\\system.spatial.5.8.5.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\nagy.gabor\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
