@@ -1,19 +1,59 @@
 ﻿using NorthwindModel;
 using ODataWebExperimental.Northwind.Model;
+using Warehouse.DTOs;
 using Warehouse.Interfaces;
 
 namespace Warehouse.Services
 {
     public class NorthwindService : INorthwindService
     {
-        private readonly ILogger<NorthwindService> logger;
         private readonly NorthwindEntities context;
 
-        public NorthwindService(ILogger<NorthwindService> logger, IConfiguration configuration)
+        public NorthwindService(IConfiguration configuration)
         {
-            this.logger = logger;
             var serviceUri = configuration["OdataServiceUri"];
             this.context = new NorthwindEntities(new Uri(serviceUri));
+        }
+        public IEnumerable<Product> GetProducts(string productName)
+        {
+            var products = context.Products.Where(x => x.ProductName.StartsWith(productName)).ToList();
+
+            return products;
+        }
+
+        public IEnumerable<SupplierDTO> GetSuppliersOrdersSum()
+        {
+            var orderDetails = context.Order_Details.ToList();
+            var products = context.Products.ToList();
+            var suppliers = context.Suppliers.ToList();
+
+            var productIdsWithOrderdPrice = orderDetails.GroupBy(x => x.ProductID)
+                                .ToDictionary(x => x.Key,
+                                              x => x.Sum(y => y.UnitPrice * (decimal)(1 - y.Discount) * y.Quantity));
+            
+            var orderedProductIds = productIdsWithOrderdPrice.Select(x => x.Key);
+            var orderdProductsWithSupplierIds = products.Where(x => orderedProductIds.Contains(x.ProductID)).ToDictionary(x => x.ProductID, x => x.SupplierID).Distinct();
+
+            var orderdProductsWithSupplierCompanyname = new Dictionary<int, string>();
+            foreach (var supplier in suppliers)
+            {
+                var productWithSupplier = orderdProductsWithSupplierIds.FirstOrDefault(x => x.Value == supplier.SupplierID);
+                if (productWithSupplier.Key != 0 && productWithSupplier.Value != null)
+                {
+                    orderdProductsWithSupplierCompanyname.Add(productWithSupplier.Key, supplier.CompanyName);
+                }
+            }
+
+            var supplierWithOrderedSum = productIdsWithOrderdPrice.Join(orderdProductsWithSupplierCompanyname,
+                                                      orderProduct => orderProduct.Key,
+                                                      productWithSupplier => productWithSupplier.Key,
+                                                      (orderedProduct, productWithSupplier) => new SupplierDTO
+                                                      {
+                                                          CompanyName = productWithSupplier.Value,
+                                                          OrderSum = orderedProduct.Value
+                                                      });
+
+            return supplierWithOrderedSum;
         }
 
         public IEnumerable<Employee> GetAllEmployees() 
@@ -21,6 +61,20 @@ namespace Warehouse.Services
             var employees = context.Employees.ToList();
             
             return employees;
+        }
+
+        public IEnumerable<Supplier> GetAllSuppliers()
+        {
+            var suppliers = context.Suppliers.ToList();
+
+            return suppliers;
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            var categories = context.Categories.ToList();
+
+            return categories;
         }
     }
 }

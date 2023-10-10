@@ -1,4 +1,3 @@
-using ODataWebExperimental.Northwind.Model;
 using Warehouse.Interfaces;
 using Warehouse.Services;
 
@@ -11,8 +10,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<INorthwindService, NorthwindService>();
+var allowedSpecificOrigins = "allowedSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowedSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000");
+                      });
+});
 
 var app = builder.Build();
+
+app.UseCors(allowedSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
