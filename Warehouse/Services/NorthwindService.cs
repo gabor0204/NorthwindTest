@@ -18,7 +18,7 @@ namespace Warehouse.Services
         {
             var products = context.Products.Where(x => x.ProductName.StartsWith(productName)).ToList();
 
-            return products;
+            return products.OrderBy(x => x.ProductName);
         }
 
         public IEnumerable<SupplierDTO> GetSuppliersOrdersSum()
@@ -35,12 +35,17 @@ namespace Warehouse.Services
             var orderdProductsWithSupplierIds = products.Where(x => orderedProductIds.Contains(x.ProductID)).ToDictionary(x => x.ProductID, x => x.SupplierID).Distinct();
 
             var orderdProductsWithSupplierCompanyname = new Dictionary<int, string>();
+            var suppliersWithoutOrder = new List<SupplierDTO>();
             foreach (var supplier in suppliers)
             {
                 var productWithSupplier = orderdProductsWithSupplierIds.FirstOrDefault(x => x.Value == supplier.SupplierID);
                 if (productWithSupplier.Key != 0 && productWithSupplier.Value != null)
                 {
                     orderdProductsWithSupplierCompanyname.Add(productWithSupplier.Key, supplier.CompanyName);
+                }
+                else 
+                {
+                    suppliersWithoutOrder.Add(new SupplierDTO { CompanyName = supplier.CompanyName, OrderSum = 0 });
                 }
             }
 
@@ -53,28 +58,28 @@ namespace Warehouse.Services
                                                           OrderSum = orderedProduct.Value
                                                       });
 
-            return supplierWithOrderedSum;
+            return supplierWithOrderedSum.Concat(suppliersWithoutOrder).OrderByDescending(x => x.OrderSum);
         }
 
         public IEnumerable<Employee> GetAllEmployees() 
         {
             var employees = context.Employees.ToList();
             
-            return employees;
+            return employees.OrderBy(x => x.FirstName).ThenBy(x => x.LastName);
         }
 
         public IEnumerable<Supplier> GetAllSuppliers()
         {
             var suppliers = context.Suppliers.ToList();
 
-            return suppliers;
+            return suppliers.OrderBy(x => x.CompanyName);
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
             var categories = context.Categories.ToList();
 
-            return categories;
+            return categories.OrderBy(x => x.CategoryName);
         }
     }
 }
